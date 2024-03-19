@@ -1,5 +1,5 @@
 export default function convertWord(inputWord) {
-  let letterObjects = [];
+  const letterObjects = [];
   inputWord = inputWord.toUpperCase();
   for (let i = 0; i < inputWord.length; i++) {
     let letterObject = {
@@ -11,5 +11,15 @@ export default function convertWord(inputWord) {
   return letterObjects;
 }
 
-let wordObjects = convertWord('apple');
-console.log(wordObjects);
+let secretWord = 'apple';
+let guessedWord = 'hello';
+
+let secretObjects = convertWord(secretWord);
+console.log(secretWord, ':', secretObjects);
+
+let guessedObjects = convertWord(guessedWord);
+console.log(guessedWord, ':', guessedObjects);
+
+export function feedback(secretObjects, guessedObjects) {
+  const feedbackArray = [];
+}

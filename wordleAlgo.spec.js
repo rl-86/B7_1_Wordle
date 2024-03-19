@@ -15,7 +15,14 @@ describe('convertWord()', () => {
       { letter: 'E' },
     ]);
   });
+
+  it('should return the same number of letters as the input word', () => {
+    const secretWord = 'orange';
+    const output = convertWord(secretWord);
+    expect(output).toHaveLength(6);
+  });
 });
+
 /*
 describe('feedback()', () => {
   it('should compare the letters of the two words and return correct, incorrect or misplaced for each letter', () => {
@@ -57,4 +64,5 @@ describe('feedback()', () => {
     ]);
   });
 });
+
 */
