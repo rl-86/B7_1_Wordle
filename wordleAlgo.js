@@ -1,8 +1,3 @@
-// Secret Word:
-let secretWord = 'apple';
-// Guessed Word:
-let guessedWord = 'apple';
-
 export function convertWord(inputWord) {
   const letterObjects = [];
   inputWord = inputWord.toUpperCase();
@@ -13,13 +8,11 @@ export function convertWord(inputWord) {
 
     letterObjects.push(letterObject);
   }
+  console.log(letterObjects);
   return letterObjects;
 }
 
-const secretObjects = convertWord(secretWord);
-const guessedObjects = convertWord(guessedWord);
-
-export default function feedback() {
+export function feedback(secretObjects, guessedObjects) {
   const feedbackResult = [];
   const secretLetters = secretObjects.map((obj) => obj.letter);
   const letterCounts = {};
@@ -48,28 +41,16 @@ export default function feedback() {
     }
   }
   //console.log('Your guess:', guessedWord.toUpperCase(), feedbackResult);
+  console.log(feedbackResult);
   return feedbackResult;
 }
-feedback(secretObjects, guessedObjects);
-
 /*
-const secretObjects = [
-  { letter: 'C' },
-  { letter: 'O' },
-  { letter: 'R' },
-  { letter: 'R' },
-  { letter: 'E' },
-  { letter: 'C' },
-  { letter: 'T' },
-];
-const guessedObjects = [
-  { letter: 'C' },
-  { letter: 'O' },
-  { letter: 'R' },
-  { letter: 'E' },
-  { letter: 'C' },
-  { letter: 'T' },
-  { letter: 'O' },
-];
+// Secret Word:
+let secretWord = 'apple';
+// Guessed Word:
+let guessedWord = 'hello';
+
+const secretObjects = convertWord(secretWord);
+const guessedObjects = convertWord(guessedWord);
 feedback(secretObjects, guessedObjects);
 */
