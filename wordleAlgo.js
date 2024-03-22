@@ -8,7 +8,7 @@ export function convertWord(inputWord) {
 
     letterObjects.push(letterObject);
   }
-  //console.log(letterObjects);
+
   return letterObjects;
 }
 
@@ -40,17 +40,27 @@ export function feedback(secretObjects, guessedObjects) {
       ).result = 'incorrect';
     }
   }
-  //console.log('Your guess:', guessedWord.toUpperCase(), feedbackResult);
-  //console.log(feedbackResult);
+
   return feedbackResult;
 }
-/*
-// Secret Word:
-let secretWord = 'apple';
-// Guessed Word:
-let guessedWord = 'hello';
 
-const secretObjects = convertWord(secretWord);
-const guessedObjects = convertWord(guessedWord);
-feedback(secretObjects, guessedObjects);
+/*
+// To manually run the algorithm and console.log the results
+function runWordleAlgo() {
+  // Secret Word:
+  let secretWord = 'radio';
+  // Guessed Word:
+  let guessedWord = 'train';
+
+  const secretObjects = convertWord(secretWord);
+  const guessedObjects = convertWord(guessedWord);
+  feedback(secretObjects, guessedObjects);
+
+  const guessResult = feedback(secretObjects, guessedObjects);
+
+  console.log('Your guess:', guessedWord.toUpperCase());
+  console.log(guessResult);
+}
+
+runWordleAlgo();
 */
