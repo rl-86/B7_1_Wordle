@@ -2,7 +2,7 @@ import { describe, expect, it } from '@jest/globals';
 import { convertWord } from './wordleAlgo.js';
 import { feedback } from './wordleAlgo.js';
 
-// Testing convertWord()
+// Testar convertWord funktionen och detta testar att den konverterar en sträng till en array med ett objekt "letter" för varje bokstav.
 describe('convertWord()', () => {
   it('should convert all letters of the word into individual objects and make them uppercase', () => {
     const secretWord = 'apple';
@@ -16,6 +16,7 @@ describe('convertWord()', () => {
     ]);
   });
 
+  // Detta test är till för att se att convertWord() returnerar lika många bokstäver som den skickade in.
   it('should return the same number of letters as the input word', () => {
     const secretWord = 'orange';
     const output = convertWord(secretWord);
@@ -23,7 +24,7 @@ describe('convertWord()', () => {
   });
 });
 
-// Testing feedback()
+// Testar feedback funktionen. De första två testerna var till för att se när skapandet av funktionen började fungera.
 describe('feedback()', () => {
   it('should compare the two letters of the two words and return: correct', () => {
     const secretObjects = [{ letter: 'B' }];
@@ -39,6 +40,7 @@ describe('feedback()', () => {
     expect(output).toEqual([{ letter: 'B', result: 'incorrect' }]);
   });
 
+  // De två följande testerna är till för att se att funktionen fungerar som tänkt när det kommer fler av samma bokstäver. Kontrollera att första "B" får misplaced och det andra incorrect.
   it('should compare two variables and return the correct result: correct, incorrect or misplaced for each letter', () => {
     const secretObjects = [{ letter: 'A' }, { letter: 'B' }, { letter: 'A' }];
     const guessedObjects = [{ letter: 'B' }, { letter: 'A' }, { letter: 'B' }];
@@ -50,6 +52,7 @@ describe('feedback()', () => {
     ]);
   });
 
+  // Detta för att kontrollera att det första "A" inte får misplaced utan incorrect.
   it('should compare two variables and return the correct result: correct, incorrect or misplaced for each letter (case 2)', () => {
     const secretObjects = [{ letter: 'B' }, { letter: 'B' }, { letter: 'A' }];
     const guessedObjects = [{ letter: 'B' }, { letter: 'A' }, { letter: 'A' }];
@@ -61,6 +64,7 @@ describe('feedback()', () => {
     ]);
   });
 
+  // Detta testar ett verkligt senario där det hemliga order är "Apple" och det gissade ordet är "Hello" där resultatet ska vara en blandning av "misplaced", "incorrect"och "correct".
   it('should compare the letters of the two words and return correct, incorrect or misplaced for each letter', () => {
     const secretObjects = [
       { letter: 'A' },
@@ -86,6 +90,7 @@ describe('feedback()', () => {
     ]);
   });
 
+  // Detta testar att alla bokstäver får resultatet incorrect när inga bokstäver matchar.
   it('should compare the letters of the two words and return incorrect for each letter', () => {
     const secretObjects = [
       { letter: 'A' },
@@ -111,6 +116,7 @@ describe('feedback()', () => {
     ]);
   });
 
+  // Detta testar att alla bokstäver får resultatet correct när det gissade ordet är samma som hemliga ordet.
   it('should compare the letters of the two words and return correct for each letter', () => {
     const secretObjects = [
       { letter: 'A' },

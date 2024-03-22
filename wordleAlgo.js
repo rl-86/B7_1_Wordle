@@ -8,7 +8,7 @@ export function convertWord(inputWord) {
 
     letterObjects.push(letterObject);
   }
-  console.log(letterObjects);
+  //console.log(letterObjects);
   return letterObjects;
 }
 
@@ -41,7 +41,7 @@ export function feedback(secretObjects, guessedObjects) {
     }
   }
   //console.log('Your guess:', guessedWord.toUpperCase(), feedbackResult);
-  console.log(feedbackResult);
+  //console.log(feedbackResult);
   return feedbackResult;
 }
 /*
