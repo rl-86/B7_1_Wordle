@@ -1,66 +1,57 @@
-export function convertWord(inputWord) {
-  const letterObjects = [];
-  inputWord = inputWord.toUpperCase();
-  for (let i = 0; i < inputWord.length; i++) {
-    let letterObject = {
-      letter: inputWord[i],
-    };
+// Input two words of string type to compare.
+export function feedback(secretWord, guessedWord) {
+  // Converts a string to an array and puts each letter into an object.
+  function convertWord(inputWord) {
+    const letterObjects = [];
+    inputWord = inputWord.toUpperCase();
+    for (let i = 0; i < inputWord.length; i++) {
+      let letterObject = {
+        letter: inputWord[i],
+      };
 
-    letterObjects.push(letterObject);
-  }
-
-  return letterObjects;
-}
-
-export function feedback(secretObjects, guessedObjects) {
-  const feedbackResult = [];
-  const secretLetters = secretObjects.map((obj) => obj.letter);
-  const letterCounts = {};
-
-  secretLetters.forEach((letter) => {
-    letterCounts[letter] = (letterCounts[letter] || 0) + 1;
-  });
-
-  for (let i = 0; i < guessedObjects.length; i++) {
-    const guessedLetter = guessedObjects[i].letter;
-
-    if (secretLetters[i] === guessedLetter) {
-      feedbackResult.push({ letter: guessedLetter, result: 'correct' });
-      letterCounts[guessedLetter]--;
-    } else if (letterCounts[guessedLetter] > 0) {
-      feedbackResult.push({ letter: guessedLetter, result: 'misplaced' });
-      letterCounts[guessedLetter]--;
-    } else {
-      feedbackResult.push({ letter: guessedLetter, result: 'incorrect' });
+      letterObjects.push(letterObject);
     }
 
-    if (letterCounts[guessedLetter] < 0) {
-      feedbackResult.find(
-        (obj) => obj.letter === guessedLetter && obj.result === 'misplaced'
-      ).result = 'incorrect';
-    }
+    return letterObjects;
   }
 
-  return feedbackResult;
-}
+  // Compare the two arrays and return an array with the result for each letter.
+  function compareWords(secretObjects, guessedObjects) {
+    const compareResult = [];
+    const secretLetters = secretObjects.map((obj) => obj.letter);
+    const letterCounts = {};
 
-/*
-// To manually run the algorithm and console.log the results
-function runWordleAlgo() {
-  // Secret Word:
-  let secretWord = 'radio';
-  // Guessed Word:
-  let guessedWord = 'train';
+    secretLetters.forEach((letter) => {
+      letterCounts[letter] = (letterCounts[letter] || 0) + 1;
+    });
+
+    for (let i = 0; i < guessedObjects.length; i++) {
+      const guessedLetter = guessedObjects[i].letter;
+
+      if (secretLetters[i] === guessedLetter) {
+        compareResult.push({ letter: guessedLetter, result: 'correct' });
+        letterCounts[guessedLetter]--;
+      } else if (letterCounts[guessedLetter] > 0) {
+        compareResult.push({ letter: guessedLetter, result: 'misplaced' });
+        letterCounts[guessedLetter]--;
+      } else {
+        compareResult.push({ letter: guessedLetter, result: 'incorrect' });
+      }
+
+      if (letterCounts[guessedLetter] < 0) {
+        compareResult.find(
+          (obj) => obj.letter === guessedLetter && obj.result === 'misplaced'
+        ).result = 'incorrect';
+      }
+    }
+
+    return compareResult;
+  }
 
   const secretObjects = convertWord(secretWord);
   const guessedObjects = convertWord(guessedWord);
-  feedback(secretObjects, guessedObjects);
+  const feedbackResult = compareWords(secretObjects, guessedObjects);
 
-  const guessResult = feedback(secretObjects, guessedObjects);
-
-  console.log('Your guess:', guessedWord.toUpperCase());
-  console.log(guessResult);
+  //console.log('Guess:', guessedWord, feedbackResult);
+  return feedbackResult;
 }
-
-runWordleAlgo();
-*/
